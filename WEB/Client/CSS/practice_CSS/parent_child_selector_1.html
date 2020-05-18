@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      ul li{
+        color:red;
+      }
+      #lecture>li{
+        border:1px solid red;
+      }
+      ul,ol{
+        background-color:powderblue;
+      }
+    </style>
+    <!--/>li사용하면 바로 아래의 li에 대해서만 해당되는 것-->
+  </head>
+  <body>
+    <ul>
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript</li>
+    </ul>
+    <ol id="lecture">
+      <li>HTML</li>
+      <li>CSS
+        <ol>
+          <li>selector</li>
+          <li>declaration</li>
+        </ol>
+      </li>
+      <li>JavaScript</li>
+    </ol>
+  </body>
+</html>
+<!-- css cheat sheet 참조-->

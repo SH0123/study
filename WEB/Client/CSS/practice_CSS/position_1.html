@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    html{
+      border:1px solid violet;
+    }
+    div{
+      border:5px solid tomato;
+      margin: 10px;
+    }
+    #me{
+      position: relative;
+      left:100px;
+      right;/*left와 right중에는 left가 우선*/
+      top:100px;
+      bottom;/*top과 bottom중에는 top이 우선*/
+    }/*position type에는 relative를 이용하여 offset이용 가능하고
+    static을이용해서는 위치를 설정하지 않는다 offset 무시, static이 기본값
+    position relative를 하더라도 offset 지정하지 않으면 원래의 위치에 있다*/
+  </style>
+</head>
+<body>
+  <div id="other"> other
+  </div>
+  <div id="parent">parent
+    <div id="me">me
+    </div>
+  </div>
+
+</body>
+</html>

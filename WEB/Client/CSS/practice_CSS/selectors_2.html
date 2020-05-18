@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  li{
+    color:red;
+    text-decoration:underline
+  }
+  #select{
+    font-size:50px;
+    color:blue;
+  }
+  .deactive{
+    text-decoration: line-through;
+  }
+  </style>
+</head>
+<body>
+  <h1 class="deactive">수업의 순서</h1>
+  <ul>
+    <li class="deactive">HTML</li>
+    <li id="select">CSS</li>
+    <li class="deactive">JavaScript</li>
+  </ul>
+</body>
+</html>
+<!-- id가 같은것은 있으면 안된다 한번만 등장
+대신에 여러번 등장하기 위해서는 class사용하면 됨
+class는 서로 다른 태그들도 grouping가능하다-->
