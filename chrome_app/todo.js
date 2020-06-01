@@ -35,7 +35,7 @@ function deleteToDo(event){
 function paintToDo(text){
     const li = document.createElement("li");
     const delBtn = document.createElement("button");
-    delBtn.innerHTML = "☆";
+    delBtn.innerText = "☆"; // innerText는 문자 그대로 인식하여 출력하지만, innerHtml은 Html방식으로 인지하여 출력
     delBtn.addEventListener("click", deleteToDo);
     const span = document.createElement("span");
     const newId = toDos.length + 1;
