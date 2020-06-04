@@ -1,3 +1,4 @@
 #movie app react 
 
-React JS fundamental course
+Nomad Coders React JS fundamental course
+
