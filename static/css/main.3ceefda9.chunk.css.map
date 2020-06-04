@@ -1,0 +1,1 @@
+{"version":3,"sources":["App.css"],"names":[],"mappings":"AAIA,KACI,wBACJ","file":"main.3ceefda9.chunk.css","sourcesContent":["/*\r\nI'd like to style this part after studying how to decorate with css\r\n*/\r\n\r\nbody{\r\n    background-color: rgb(143, 105, 48);\r\n}"]}
