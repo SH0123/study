@@ -8,7 +8,7 @@ class Home extends React.Component {
     //data that will be changed
     isLoading: true,
     movies: []
-  };
+  }; // redux를 사용하게 되면 state가 home화면에 갇혀있는게 아니라 screen 밖에 있기 때문에 계속해서 새로 로드 안해도 됨
 
   getMovies = async () => {
     const { data: { data: { movies } } } = await axios.get("https://yts.mx/api/v2/list_movies.json?sort_by=rating");
