@@ -10,6 +10,7 @@ class Detail extends React.Component{
     render(){
         const { location } = this.props;
         const { state } = location;
+
         if(state === undefined){
             return null;
         }else{
