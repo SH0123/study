@@ -23,6 +23,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "Weather-app made with reactNative",
+    "githubUrl": "https://github.com/SH0123/study/tree/master/weater-app"
   }
 }
