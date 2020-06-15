@@ -7,18 +7,27 @@ import {
   TouchableOpacity,
   TextInput
 } from "react-native";
+import PropTypes from "prop-types";
 
 const { height, width } = Dimensions.get("window");
 
 export default class ToDoList extends React.Component {
-  state = {
-    isEditing: false,
-    isCompleted: false,
-    toDoValue: ""
+  constructor(props) {
+    super(props);
+    this.state = { isEditing: false, toDoValue: props.text };
+  }
+  static propTypes = {
+    text: PropTypes.string.isRequired,
+    isCompleted: PropTypes.bool.isRequired,
+    deleteToDos: PropTypes.func.isRequired,
+    id: PropTypes.string.isRequired,
+    uncompleteToDo: PropTypes.func.isRequired,
+    completeToDo: PropTypes.func.isRequired,
+    updateToDo: PropTypes.func.isRequired
   };
   render() {
-    const { isEditing, isCompleted, toDoValue } = this.state;
-    const { text } = this.props;
+    const { isEditing, toDoValue } = this.state;
+    const { text, id, deleteToDos, isCompleted } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.column}>
@@ -69,7 +78,7 @@ export default class ToDoList extends React.Component {
                 <Text style={styles.actionText}>📝</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPressOut={() => deleteToDos(id)}>
               <View style={styles.actionContainer}>
                 <Text style={styles.actionText}>❌</Text>
               </View>
@@ -80,20 +89,23 @@ export default class ToDoList extends React.Component {
     );
   }
   _toggleComplete = () => {
-    this.setState((prevState) => {
-      return {
-        isCompleted: !prevState.isCompleted
-      };
-    });
+    const { isCompleted, uncompleteToDo, completeToDo, id } = this.props;
+    if (isCompleted) {
+      uncompleteToDo(id);
+    } else {
+      completeToDo(id);
+    }
   };
   _startEditing = () => {
     const { text } = this.props;
     this.setState({
-      isEditing: true,
-      toDoValue: text
+      isEditing: true
     });
   };
   _finishEditing = () => {
+    const { toDoValue } = this.state;
+    const { id, updateToDo } = this.props;
+    updateToDo(id, toDoValue);
     this.setState({
       isEditing: false
     });
@@ -135,7 +147,6 @@ const styles = StyleSheet.create({
     color: "black"
   },
   text: {
-    backgroundColor: "yellow",
     fontWeight: "600",
     fontSize: 20,
     marginVertical: 15,
@@ -148,7 +159,6 @@ const styles = StyleSheet.create({
     width: width / 2
   },
   input: {
-    backgroundColor: "pink",
     paddingTop: -5
   },
   actions: {
