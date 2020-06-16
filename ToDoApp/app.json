@@ -12,6 +12,8 @@
     ],
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "description": "ToDoApp in react-native referece: nomad",
+    "githubUrl": "https://github.com/SH0123/study/tree/master/ToDoApp"
   }
 }
