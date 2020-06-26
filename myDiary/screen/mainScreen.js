@@ -18,12 +18,14 @@ export default class mainScreen extends React.Component {
       selectedDate: "",
       posts: [
         {
+          id: 1,
           title: "6월 24일의 감정상태",
           hashes: ["기쁘다", "왜냐면", "치킨먹어서"],
           content: "본문",
           date: "2020-06-24"
         },
         {
+          id: 2,
           title: "6월 23일의 감정상태",
           hashes: ["행복하다", "왜냐면", "풀업성공해서"],
           content: "본문",
@@ -53,6 +55,7 @@ export default class mainScreen extends React.Component {
                 <TouchableOpacity
                   onPress={() => {
                     navigation.navigate("detailScreen", { posts: item });
+                    this.setState({ selectedDate: "" });
                   }}
                 >
                   <View style={styles.postContainer}>
