@@ -32,8 +32,7 @@ export default class mainScreen extends React.Component {
           content: "본문",
           date: "2020-07-02"
         }
-      ],
-      newPost: {}
+      ]
     };
   }
   render() {

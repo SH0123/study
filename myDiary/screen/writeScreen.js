@@ -66,6 +66,8 @@ export default class writeScreen extends React.Component {
         <View style={styles.header_zone}>
           <TouchableOpacity
             style={styles.save_icon}
+            activeOpacity={0.8}
+            hitSlop={{ top: 32, bottom: 32, left: 32, right: 32 }}
             onPress={() => {
               this._saveText();
             }}
@@ -140,6 +142,8 @@ export default class writeScreen extends React.Component {
         inputContent: ""
       });
       navigation.navigate("mainScreen", { newValue: newPost });
+    } else {
+      navigation.navigate("mainScreen");
     }
   };
 
