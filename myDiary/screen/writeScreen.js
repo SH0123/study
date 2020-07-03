@@ -1,8 +1,16 @@
 import * as React from "react";
-import { Platform, StyleSheet, Text, View, TextInput } from "react-native";
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity
+} from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { Dimensions } from "react-native";
 import { v1 as uuidv1 } from "uuid";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const seed = () => {
   const one = Math.floor((Math.random() * 100) / 3.92);
@@ -55,23 +63,50 @@ export default class writeScreen extends React.Component {
     const { inputTitle, inputContent } = this.state;
     return (
       <SafeAreaView style={styles.container}>
+        <View style={styles.header_zone}>
+          <TouchableOpacity
+            style={styles.save_icon}
+            onPress={() => {
+              this._saveText();
+            }}
+          >
+            <Ionicons name="ios-arrow-back" size={30} />
+            <Text>save</Text>
+          </TouchableOpacity>
+        </View>
+
         <View style={styles.contentCard}>
-          <TextInput
-            onChangeText={this._changeTitle}
-            value={inputTitle}
-            placeholder="제목을 입력하세요"
-            placeholderTextColor="#black"
-            returnKeyType="done"
-            style={styles.titleContainer}
-          />
+          <View style={styles.titleBox}>
+            <Text style={styles.text}>제목</Text>
+            <TextInput
+              onChangeText={this._changeTitle}
+              value={inputTitle}
+              placeholder="제목을 입력하세요"
+              placeholderTextColor="black"
+              returnKeyType="done"
+              style={styles.titleContainer}
+            />
+          </View>
+          <View style={styles.titleBox}>
+            <Text style={styles.text}>해시태그</Text>
+            <TextInput
+              onChangeText={this._changeTitle}
+              value={inputTitle}
+              placeholder="#해시태그를 입력하세요"
+              placeholderTextColor="black"
+              returnKeyType="done"
+              style={styles.titleContainer}
+            />
+          </View>
+
           <TextInput
             onChangeText={this._changeContent}
             value={inputContent}
             placeholder="내용을 입력하세요"
-            placeholderTextColor="#black"
+            placeholderTextColor="black"
             returnKeyType="done"
             multiline={true}
-            style={styles.contensContainer}
+            style={styles.contentsContainer}
           />
         </View>
       </SafeAreaView>
@@ -87,27 +122,86 @@ export default class writeScreen extends React.Component {
     const { inputContent } = this.state;
     this.setState({ inputContent: value });
   };
+
+  _saveText = () => {
+    const { inputTitle, inputContent } = this.state;
+    const { navigation } = this.props;
+    if (inputTitle !== "") {
+      const ID = uuidv1({ random: seed() });
+      const date = this._getDate();
+      const newPost = {
+        id: id,
+        title: inputTitle,
+        content: inputContent,
+        date: date
+      };
+      this.setState({
+        inputTitle: "",
+        inputContent: ""
+      });
+      navigation.navigate("mainScreen", { newValue: newPost });
+    }
+  };
+
+  _getDate = () => {
+    let tyear = new Date().getFullYear().toString();
+    let tmonth = (new Date().getMonth() + 1).toString();
+    let tday = new Date().getDate().toString();
+
+    if (tmonth < 10) {
+      tmonth = "0" + tmonth;
+    }
+    if (tday < 10) {
+      tday = "0" + tday;
+    }
+    return tyear + "-" + tmonth + "-" + tday;
+  };
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#E0FFFF",
-    alignItems: "center"
+    backgroundColor: "#E0FFFF"
   },
-  titleContainer: {
+  hashContainer: {
     borderBottomColor: "black",
     borderBottomWidth: 1,
     padding: 20
   },
-  contensContainer: {
+  titleContainer: {
+    flex: 5,
+    borderBottomColor: "black",
+    borderBottomWidth: 1,
+    padding: 20,
+    marginRight: 20
+  },
+  contentsContainer: {
     padding: 20,
     paddingTop: 20
   },
   contentCard: {
+    flex: 6,
     backgroundColor: "white",
-    marginTop: 60,
-    width: width - 30,
-    height: height - 50
+    margin: 10
+  },
+  titleBox: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  text: {
+    flex: 1,
+    marginLeft: 20
+  },
+  save_icon: {
+    padding: 10
+  },
+  header_zone: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    flex: 1,
+    marginRight: 10,
+    marginLeft: 10
   }
 });
