@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
+import detailScreen from "./detailScreen";
 
 export default class mainScreen extends React.Component {
   constructor(props) {
@@ -19,24 +20,26 @@ export default class mainScreen extends React.Component {
       posts: [
         {
           id: 1,
-          title: "6월 24일의 감정상태",
+          title: "7월 1일의 감정상태",
           hashes: ["기쁘다", "왜냐면", "치킨먹어서"],
           content: "본문",
-          date: "2020-06-24"
+          date: "2020-07-01"
         },
         {
           id: 2,
-          title: "6월 23일의 감정상태",
+          title: "7월 2일의 감정상태",
           hashes: ["행복하다", "왜냐면", "풀업성공해서"],
           content: "본문",
-          date: "2020-06-23"
+          date: "2020-07-02"
         }
-      ]
+      ],
+      newPost: {}
     };
   }
   render() {
     const { posts, selectedDate } = this.state;
     const { navigation } = this.props;
+
     return (
       <SafeAreaView style={styles.container}>
         <Calendar

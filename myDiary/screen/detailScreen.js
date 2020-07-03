@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import NullScreen from "./nullScreen";
-import DetailHeader from "../component/detailHeader";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 export default class detailScreen extends React.Component {
@@ -23,7 +22,11 @@ export default class detailScreen extends React.Component {
           <View style={styles.contentsContainer}>
             <Text>{posts.title}</Text>
             <Text>{posts.date}</Text>
-            <Text>{posts.hashes}</Text>
+            <Text>
+              {posts.hashes.map((hash) => {
+                return `#${hash} `;
+              })}
+            </Text>
             <Text>{posts.content}</Text>
           </View>
         ) : (
